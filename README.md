@@ -1,8 +1,8 @@
-[![GitHub contributors](https://img.shields.io/github/contributors/HorebParraud/110borwein?style=for-the-badge)](https://github.com/HorebParraud/110borwein/graphs/contributors)
-[![GitHub forks](https://img.shields.io/github/forks/HorebParraud/110borwein?style=for-the-badge)](https://github.com/HorebParraud/110borwein/network)
-[![GitHub stars](https://img.shields.io/github/stars/HorebParraud/110borwein?style=for-the-badge)](https://github.com/HorebParraud/110borwein/stargazers)
-[![GitHub issues](https://img.shields.io/github/issues/HorebParraud/110borwein?style=for-the-badge)](https://github.com/HorebParraud/110borwein/issues)
-[![GitHub license](https://img.shields.io/github/license/HorebParraud/110borwein?style=for-the-badge)](https://github.com/HorebParraud/110borwein)
+[![GitHub contributors](https://img.shields.io/github/contributors/HorebParraud/202unsold?style=for-the-badge)](https://github.com/HorebParraud/202unsold/graphs/contributors)
+[![GitHub forks](https://img.shields.io/github/forks/HorebParraud/202unsold?style=for-the-badge)](https://github.com/HorebParraud/202unsold/network)
+[![GitHub stars](https://img.shields.io/github/stars/HorebParraud/202unsold?style=for-the-badge)](https://github.com/HorebParraud/202unsold/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/HorebParraud/202unsold?style=for-the-badge)](https://github.com/HorebParraud/202unsold/issues)
+[![GitHub license](https://img.shields.io/github/license/HorebParraud/202unsold?style=for-the-badge)](https://github.com/HorebParraud/202unsold)
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- PROJECT LOGO -->
@@ -12,15 +12,15 @@
     <img src="Mathematics.png" alt="Logo">
   </a>
 
-  <h1 align="center">110borwein</h1>
+  <h1 align="center">202unsold</h1>
 
   <p align="center">
     EPITECH project - Mathematics
     <br />
     <br />
-    <a href="https://github.com/HorepParraud/110borwein/issues">Report Bug</a>
+    <a href="https://github.com/HorepParraud/202unsold/issues">Report Bug</a>
     ·
-    <a href="https://github.com/HorebParraud/110borwein/issues">Request Feature</a>
+    <a href="https://github.com/HorebParraud/202unsold/issues">Request Feature</a>
   </p>
 </p>
 
@@ -32,20 +32,18 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-> This project was realized during my first year at EPITECH in 2018
+> This project was realized during my second year at EPITECH in 2019
 
-In 2001, the Borwein brothers studied the following integrals, which now bear their name:
+To deduce from his past results the probability to sell a **$x** jacket
+and **$y** trousers together. It appears that the probability is defined by the following formula *(**a** and **b** beingintegers greater than **50**, depending on the economic climate)*:
 
-`∀n ∈ N, In = Z (+∞ 0) Y (n k=0) * (sin( x 2k+1 ) / (x / 2k+1)) * dx`
+### `((a − x) * (b − y)) / ((5a − 150) * (5b − 150))`
 
-These integrals are remarkable because the first ones are all equal to `π/2`.An obvious conjecture would bethat this is true for every value of `n`.
-
-Some decades ago, an old-school mathemacian would have had to hand-calculate the values of the first
-integrals (which would take several months, or even years), then assume all the integrals are equal to `π/2`, and finally try and demonstrate this conjecture.
-
-Today, we can use numerical calculus to evaluate as many of these integrals as possible before getting into a demonstration; this is the goal of this project.
-
-You have to compute Borwein integrals, using the midpoint rule, the trapezoidal rule and the Simpson’s rule, and print both the value of `In` and the absolute difference between `In` and `π/2`.
+Let’s call `X`, `Y` and `Z`, respectively, the random variables that represent *“the price of a sold jacket”*, *“the price of sold trousers” and “the price of a sold suit”*.
+Given the values of ***a*** and ***b***, your software must print:
+* an array summing up the joint law of `(X, Y)`, and the marginal laws of `X` and `Y`,
+* an array summing up the law of `Z`,
+* expected values and variances of `X`, `Y` and `Z`.
 
 ### Built With
 * Python 3.8
@@ -58,18 +56,26 @@ To get a local copy up and running follow these simple steps.
 ### Example of an expected response
 
 ```sh
-∼/HorebParraud/110borwein> ./110borwein 0
-Midpoint:
-I0 = 1.5707651076
-diff = 0.0000312192
-
-Trapezoidal:
-I0 = 1.5707660806
-diff = 0.0000302462
-
-Simpson:
-I0 = 1.5707654320
-diff = 0.0000308948
+∼/HorebParraud/202unsold> ./202unsold 60 70
+--------------------------------------------------------------------------------
+      X=10  X=20  X=30  X=40  X=50  Y law
+Y=10  0.100 0.080 0.060 0.040 0.020 0.300
+Y=20  0.083 0.067 0.050 0.033 0.017 0.250
+Y=30  0.067 0.053 0.040 0.027 0.013 0.200
+Y=40  0.050 0.040 0.030 0.020 0.010 0.150
+Y=50  0.033 0.027 0.020 0.013 0.007 0.100
+X law 0.333 0.267 0.200 0.133 0.067 1.000
+--------------------------------------------------------------------------------
+z       20      30      40      50      60      70      80      90      100
+p(Z=z)  0.100   0.163   0.193   0.193   0.167   0.100   0.053   0.023   0.007
+--------------------------------------------------------------------------------
+expected value of X:    23.3
+variance of X:          155.6
+expected value of Y:    25.0
+variance of Y:          175.0
+expected value of Z:    48.3
+variance of Z:          330.6
+--------------------------------------------------------------------------------
 ```
 <!--USEFULL LINKS-->
 ##
