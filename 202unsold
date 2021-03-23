@@ -1,0 +1,108 @@
+#! /usr/bin/env python3
+
+import   sys
+import  math
+
+def esperanceMoula(law, letter):
+    column = 10
+    result = 0
+    if letter == 'Z':
+        column = 20
+    for i in law:
+        result += (i * column)
+        column += 10
+    print("expected value of " + letter + ":\t%.1f" % result)
+    return result
+
+def varianceMoula(esp, law, letter):
+    column = 10
+    result = 0
+    if letter == 'Z':
+        column = 20
+    for i in law:
+        result += (i * pow(column - esp, 2))
+        column += 10
+    print("variance of " + letter + ":\t\t%.1f" % result)
+    return result
+
+def forMoula(a, b, x, y):
+    return ((a - x) * (b - y)) / (((5 * a) - 150) * ((5 * b) - 150))
+
+def Zz(a, b, money):
+    if money == 20:
+        return forMoula(a, b, 10, 10)
+    if money == 30:
+        return forMoula(a, b, 10, 20) + forMoula(a, b, 20, 10)
+    if money == 40:
+        return forMoula(a, b, 10, 30) + forMoula(a, b, 20, 20) + forMoula(a, b, 30, 10)
+    if money == 50:
+        return forMoula(a, b, 10, 40) + forMoula(a, b, 20, 30) + forMoula(a, b, 30, 20) + forMoula(a, b, 40, 10)
+    if money == 60:
+        return forMoula(a, b, 10, 50) + forMoula(a, b, 20, 40) + forMoula(a, b, 30, 30) + forMoula(a, b, 40, 20) + forMoula(a, b, 50, 10)
+    if money == 70:
+        return forMoula(a, b, 20, 50) + forMoula(a, b, 30, 40) + forMoula(a, b, 40, 30) + forMoula(a, b, 50, 20)
+    if money == 80:
+        return forMoula(a, b, 30, 50) + forMoula(a, b, 40, 40) + forMoula(a, b, 50, 30)
+    if money == 90:
+        return forMoula(a, b, 40, 50) + forMoula(a, b, 50, 40)
+    if money == 100:
+        return forMoula(a, b, 50, 50)
+
+def unsold(a, b):
+    y       = 1
+    totalXY = 0
+    totalY  = [0, 0, 0, 0, 0]
+    totalX  = [0, 0, 0, 0, 0]
+    totalZ  = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+    print("--------------------------------------------------------------------------------")
+    print("\tX=10\tX=20\tX=30\tX=40\tX=50\tY law")
+    for y in range(1, 6):
+        print("Y=" + str(y * 10), end='')
+        for x in range(1, 6):
+            tx = forMoula(a, b, x * 10, y * 10)
+            print("\t%.3f" % tx, end='')
+            totalY[y - 1] += tx
+            totalX[x - 1] += tx
+        print("\t%.3f" % totalY[y - 1])
+        totalXY += totalY[y - 1]
+    print("X law\t%.3f" % totalX[0] + "\t%.3f" % totalX[1] + "\t%.3f" % totalX[2] + "\t%.3f" % totalX[3] + "\t%.3f" % totalX[4] + "\t%.3f" % totalXY)
+    print("--------------------------------------------------------------------------------")
+    print("z\t20\t30\t40\t50\t60\t70\t80\t90\t100\nP(Z=z)", end='')
+    for z in range(2, 11):
+        totalZ[z - 2] = Zz(a, b, z * 10)
+        print("\t%.3f" % totalZ[z - 2], end='')
+    print("\n--------------------------------------------------------------------------------")
+    varianceMoula(esperanceMoula(totalX, 'X'), totalX, 'X')
+    varianceMoula(esperanceMoula(totalY, 'Y'), totalY, 'Y')
+    varianceMoula(esperanceMoula(totalZ, 'Z'), totalZ, 'Z')
+    print("--------------------------------------------------------------------------------")
+    return 0
+
+def helper():
+    print("USAGE\n\t./202unsold a b\nDESCRIPTION")
+    print("\ta\tconstant computed from the past results")
+    print("\tb\tconstant computed from the past results")
+    return 0
+
+# ============================================================================= MAIN
+if len(sys.argv) == 1:
+    sys.stdout.write("USAGE {-h | a b}\n")
+    exit(84)
+
+if len(sys.argv) == 2:
+    if sys.argv[1] == "-h":
+        exit(helper())
+    else:
+        sys.stdout.write("Try -h to see arg we need\n")
+        exit(84)
+
+if len(sys.argv) == 3 and int(sys.argv[1]) >= 1 and int(sys.argv[2]) >= 1:
+    if int(sys.argv[1]) <= 50 or int(sys.argv[2]) <= 50:
+        sys.stdout.write("Too small numbers\n")
+        exit(84)
+    unsold(int(sys.argv[1]), int(sys.argv[2]))
+else:
+    sys.stdout.write("Invalid number of argument\n")
+    exit(84)
+exit(0)
