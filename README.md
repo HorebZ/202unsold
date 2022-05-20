@@ -37,7 +37,8 @@
 To deduce from his past results the probability to sell a **$x** jacket
 and **$y** trousers together. It appears that the probability is defined by the following formula *(**a** and **b** beingintegers greater than **50**, depending on the economic climate)*:
 
-### `((a − x) * (b − y)) / ((5a − 150) * (5b − 150))`
+<!-- ### `((a − x) * (b − y)) / ((5a − 150) * (5b − 150))` -->
+$$ (a - x) * (b - y) \over (5a - 150) * (5b - 150) $$
 
 Let’s call `X`, `Y` and `Z`, respectively, the random variables that represent *“the price of a sold jacket”*, *“the price of sold trousers” and “the price of a sold suit”*.
 Given the values of ***a*** and ***b***, your software must print:
